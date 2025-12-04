@@ -1,15 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using Shop.Api.Extensions;
+using Shop.Domain.Interfaces;
 using Shop.Infrastructure.Context;
+using Shop.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
 builder.Services.AddOpenApi();
 builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwagger();
 
@@ -21,9 +22,11 @@ builder.Services.AddCors(policy => policy.AddPolicy("MyPolicy", builder =>
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddScoped<IEfUnitOfWork, EfUnitOfWork>();
+builder.Services.AddScoped(typeof(IEfRepository<>), typeof(EfRepository<>));
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -34,7 +37,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseCors("MyPolicy");
+
 app.UseAuthorization();
 
 app.MapControllers();
