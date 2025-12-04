@@ -3,6 +3,7 @@ using Shop.Api.Extensions;
 using Shop.Domain.Interfaces;
 using Shop.Infrastructure.Context;
 using Shop.Infrastructure.Repositories;
+using Shop.Infrastructure.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IEfUnitOfWork, EfUnitOfWork>();
 builder.Services.AddScoped(typeof(IEfRepository<>), typeof(EfRepository<>));
+builder.Services.AddIoCServices();
 
 var app = builder.Build();
 
