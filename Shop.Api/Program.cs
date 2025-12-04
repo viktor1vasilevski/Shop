@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Shop.Api.Extensions;
+using Shop.Api.Middlewares;
 using Shop.Domain.Interfaces;
 using Shop.Infrastructure.Context;
-using Shop.Infrastructure.Repositories;
 using Shop.Infrastructure.IoC;
+using Shop.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,8 @@ builder.Services.AddScoped(typeof(IEfRepository<>), typeof(EfRepository<>));
 builder.Services.AddIoCServices();
 
 var app = builder.Build();
+
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
