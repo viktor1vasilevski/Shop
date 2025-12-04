@@ -2,7 +2,7 @@
 
 namespace Shop.Application.Responses.Base;
 
-public class ApiResponse<T> where T : class
+public class ApiResponse<T>
 {
     public T? Data { get; set; }
     public string? Message { get; set; }
