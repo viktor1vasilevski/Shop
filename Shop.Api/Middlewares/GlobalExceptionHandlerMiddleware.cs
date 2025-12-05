@@ -1,42 +1,29 @@
 ﻿using Shop.Application.Enums;
+
 using Shop.Application.Responses.Base;
 
-namespace Shop.Api.Middlewares
+public class GlobalExceptionHandlerMiddleware(RequestDelegate _next, ILogger<GlobalExceptionHandlerMiddleware> _logger)
 {
-    public class GlobalExceptionHandlerMiddleware
+    public async Task InvokeAsync(HttpContext context)
     {
-        private readonly RequestDelegate _next;
-        private readonly ILogger<GlobalExceptionHandlerMiddleware> _logger;
-
-        public GlobalExceptionHandlerMiddleware(RequestDelegate next, ILogger<GlobalExceptionHandlerMiddleware> logger)
+        try
         {
-            _next = next;
-            _logger = logger;
+            await _next(context);
         }
-
-        public async Task InvokeAsync(HttpContext context)
+        catch (Exception ex)
         {
-            try
-            {
-                await _next(context);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Exception occurred: {Message}", ex.Message);
+            _logger.LogError(ex, "Exception occurred: {Message}", ex.Message);
 
-                var response = new ApiResponse<object>
-                {
-                    Data = null,
-                    Message = "An unexpected error occurred.",
-                    Status = ResponseStatus.Error,
-                };
+            var response = new ApiResponse<object>
+            {
+                Data = null,
+                Message = "An unexpected error occurred.",
+                Status = ResponseStatus.Error,
+            };
 
-                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-                context.Response.ContentType = "application/json";
-                await context.Response.WriteAsJsonAsync(response);
-            }
+            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+            context.Response.ContentType = "application/json";
+            await context.Response.WriteAsJsonAsync(response);
         }
     }
-
-
 }

@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Shop.Api.Extensions;
-using Shop.Api.Middlewares;
 using Shop.Domain.Interfaces;
 using Shop.Infrastructure.Context;
 using Shop.Infrastructure.IoC;
