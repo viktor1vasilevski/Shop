@@ -2,7 +2,7 @@
 
 ## Project Purpose
 
-This project implements a basic shop (e-commerce) backend in C# using .NET. It demonstrates clean architecture principles—including Domain-Driven Design—with clear separation between API, Application, Domain, and Infrastructure layers.
+This project implements a basic shop backend in C# using .NET. It demonstrates clean architecture principles—including Domain-Driven Design—with clear separation between API, Application, Domain, and Infrastructure layers.
 
 ## Architecture Overview
 
@@ -30,7 +30,9 @@ dotnet restore
 cd Shop.Api
 dotnet run
 ```
-By default, the API will be accessible at `http://localhost:5000`.
+
+
+By default, the API will be accessible at `https://localhost:7139`.
 
 ## Running the Tests
 
