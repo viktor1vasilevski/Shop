@@ -1,55 +1,49 @@
-# Shop API
+# Shop
 
-A RESTful API for managing products built with .NET and Entity Framework Core.
+## Project Purpose
 
-## Prerequisites
+This project implements a basic shop (e-commerce) backend in C# using .NET. It demonstrates clean architecture principles—including Domain-Driven Design—with clear separation between API, Application, Domain, and Infrastructure layers.
 
-- .NET SDK 10.0
-- SQL Server or SQL Server LocalDB
+## Architecture Overview
 
-## Getting Started
-
-### 1. Configure Database Connection
-
-Update the connection string in `Shop.Api/appsettings.Development.json`:
-
-```json
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=ShopDb;Trusted_Connection=True;Encrypt=False"
-  }
-}
+```
+Shop/
+├── Shop.Api               # The Web API entry point (controllers, routing)
+├── Shop.Application       # Application logic (use cases, services)
+├── Shop.Domain            # Core domain models and business rules
+├── Shop.Infrastructure   # Database implementations and external integrations
+├── Shop.Application.Tests # Tests for Application layer
+├── Shop.Domain.Tests      # Tests for Domain layer
 ```
 
-### 2. Run Database Migrations
+## Setup
+
+```bash
+git clone https://github.com/viktor1vasilevski/Shop.git
+cd Shop
+dotnet restore
+```
+
+## Running the Application
 
 ```bash
 cd Shop.Api
-dotnet ef database update --project ../Shop.Infrastructure
+dotnet run
 ```
+By default, the API will be accessible at `http://localhost:5000`.
 
-### 3. Run the Application
-
-```bash
-dotnet run --project Shop.Api
-```
-
-The API will be available at `https://localhost:7139`
-
-### 4. Access Swagger Documentation
-
-Navigate to: `https://localhost:7139/swagger/index.html`
-
-## API Endpoints
-
-- `GET /api/Product` - Get all products
-- `GET /api/Product/{id}` - Get product by ID
-- `POST /api/Product` - Create a new product
-- `PUT /api/Product/{id}` - Update a product
-- `DELETE /api/Product/{id}` - Delete a product
-
-## Running Tests
+## Running the Tests
 
 ```bash
 dotnet test
 ```
+
+## Design Decisions & Notable Choices
+
+- **Separation of Concerns:** Each layer has a specific responsibility, making the app maintainable and testable.
+- **Unit Testing:** Core business logic is covered with tests.
+- **Extensible:** Infrastructure and Application layers are loosely coupled for easy future improvements.
+
+## Contact
+
+Questions? Reach out to [Your Name or GitHub handle].
