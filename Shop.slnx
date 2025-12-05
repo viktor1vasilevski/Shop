@@ -5,5 +5,8 @@
     <Project Path="Shop.Domain/Shop.Domain.csproj" />
     <Project Path="Shop.Infrastructure/Shop.Infrastructure.csproj" />
   </Folder>
-  <Folder Name="/tests/" />
+  <Folder Name="/tests/">
+    <Project Path="Shop.Application.Tests/Shop.Application.Tests.csproj" Id="8087b5ed-ca38-4cce-9e12-177e8bcba3c0" />
+    <Project Path="Shop.Domain.Tests/Shop.Domain.Tests.csproj" Id="dd1b0374-fa64-48f8-aa40-3a456f9a71ba" />
+  </Folder>
 </Solution>
