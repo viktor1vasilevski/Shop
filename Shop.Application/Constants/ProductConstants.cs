@@ -7,4 +7,6 @@ public static class ProductConstants
     public const string ProductSuccessfullyDeleted = "Product was successfully deleted.";
 
     public const string ProductExist = "Product with that name already exists.";
+
+    public const string ProductWithIdNotFound = "Product with the given ID was not found.";
 }
