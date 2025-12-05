@@ -1,4 +1,5 @@
 ﻿using Microsoft.OpenApi;
+using System.Reflection;
 
 namespace Shop.Api.Extensions;
 
@@ -13,6 +14,10 @@ public static class SwaggerServiceCollectionExtension
                 Title = "Shop.Api",
                 Version = "v1"
             });
+
+            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            c.IncludeXmlComments(xmlPath);
         });
 
         return services;
