@@ -2,6 +2,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Shop.Api.Extensions;
+using Shop.Api.Middlewares;
 using Shop.Application.Validations.Product;
 using Shop.Domain.Interfaces;
 using Shop.Infrastructure.Context;

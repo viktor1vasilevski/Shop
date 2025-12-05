@@ -1,6 +1,7 @@
 ﻿using Shop.Application.Enums;
-
 using Shop.Application.Responses.Base;
+
+namespace Shop.Api.Middlewares;
 
 public class GlobalExceptionHandlerMiddleware(RequestDelegate _next, ILogger<GlobalExceptionHandlerMiddleware> _logger)
 {
