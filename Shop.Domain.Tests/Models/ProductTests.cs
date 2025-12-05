@@ -90,4 +90,89 @@ public class ProductTests
         // Assert
         act.Should().Throw<DomainValidationException>();
     }
+
+    [Fact]
+    public void Create_ShouldTrimNameAndDescription()
+    {
+        // Arrange
+        var name = "  Product Name  ";
+        var description = "  Product Description  ";
+        var quantity = 5;
+
+        // Act
+        var product = Product.Create(name, description, quantity);
+
+        // Assert
+        product.Name.Should().Be("Product Name");
+        product.Description.Should().Be("Product Description");
+    }
+
+    [Fact]
+    public void Update_ShouldTrimNameAndDescription()
+    {
+        // Arrange
+        var product = Product.Create("Old Name", "Old Desc", 5);
+
+        // Act
+        product.Update("  New Name  ", "  New Desc  ", 10);
+
+        // Assert
+        product.Name.Should().Be("New Name");
+        product.Description.Should().Be("New Desc");
+    }
+
+    [Fact]
+    public void Create_ShouldThrow_WhenNameExceedsMaxLength()
+    {
+        // Arrange
+        var longName = new string('a', 201); // max 200
+        var description = "Valid Desc";
+
+        // Act
+        Action act = () => Product.Create(longName, description, 1);
+
+        // Assert
+        act.Should().Throw<DomainValidationException>()
+           .WithMessage("*name*");
+    }
+
+    [Fact]
+    public void Create_ShouldThrow_WhenDescriptionExceedsMaxLength()
+    {
+        // Arrange
+        var name = "Valid Name";
+        var longDesc = new string('a', 1001); // max 1000
+
+        // Act
+        Action act = () => Product.Create(name, longDesc, 1);
+
+        // Assert
+        act.Should().Throw<DomainValidationException>()
+           .WithMessage("*description*");
+    }
+
+    [Fact]
+    public void Update_ShouldThrow_WhenNameExceedsMaxLength()
+    {
+        var product = Product.Create("Valid Name", "Valid Desc", 5);
+        var longName = new string('a', 201);
+
+        Action act = () => product.Update(longName, "Updated Desc", 5);
+
+        act.Should().Throw<DomainValidationException>()
+           .WithMessage("*name*");
+    }
+
+    [Fact]
+    public void Update_ShouldThrow_WhenDescriptionExceedsMaxLength()
+    {
+        var product = Product.Create("Valid Name", "Valid Desc", 5);
+        var longDesc = new string('a', 1001);
+
+        Action act = () => product.Update("Updated Name", longDesc, 5);
+
+        act.Should().Throw<DomainValidationException>()
+           .WithMessage("*description*");
+    }
+
 }
