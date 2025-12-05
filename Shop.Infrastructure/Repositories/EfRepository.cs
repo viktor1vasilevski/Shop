@@ -33,13 +33,10 @@ public class EfRepository<TEntity>(AppDbContext _context) : IEfRepository<TEntit
         return await query.ToListAsync(cancellationToken);
     }
 
-    public async Task<TEntity?> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
-        => await _dbSet.FirstOrDefaultAsync(predicate, cancellationToken);
-
     public async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken = default)
         => await _dbSet.ToListAsync(cancellationToken);
 
-    public async Task<TEntity?> GetByIdAsync(object id, CancellationToken cancellationToken = default)
+    public async Task<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         => await _dbSet.FindAsync(new object[] { id }, cancellationToken);
 
     public void Update(TEntity entity)
