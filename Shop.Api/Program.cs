@@ -1,5 +1,8 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Shop.Api.Extensions;
+using Shop.Application.Validations.Product;
 using Shop.Domain.Interfaces;
 using Shop.Infrastructure.Context;
 using Shop.Infrastructure.IoC;
@@ -26,6 +29,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IEfUnitOfWork, EfUnitOfWork>();
 builder.Services.AddScoped(typeof(IEfRepository<>), typeof(EfRepository<>));
 builder.Services.AddIoCServices();
+
+builder.Services.AddValidatorsFromAssemblyContaining<CreateProductRequestValidator>(ServiceLifetime.Transient);
+builder.Services.AddFluentValidationAutoValidation();
 
 var app = builder.Build();
 
