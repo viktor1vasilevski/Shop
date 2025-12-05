@@ -120,8 +120,7 @@ public class ProductService(IEfUnitOfWork _uow, IEfRepository<Product> _productR
         bool nameExists = await _productRepository.ExistsAsync(
             p => p.Name.ToLower() == request.Name.ToLower() && p.Id != id,
             asNoTracking: true,
-            cancellationToken: cancellationToken
-            );
+            cancellationToken: cancellationToken);
 
         if (nameExists)
             return new ApiResponse<ProductResponseDto>

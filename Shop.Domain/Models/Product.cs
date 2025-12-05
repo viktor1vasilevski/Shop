@@ -16,6 +16,7 @@ public class Product : AuditableBaseEntity
     {
         var product = new Product();
         product.Apply(name, description, quantity);
+        product.Id = Guid.NewGuid();
         return product;
     }
 
