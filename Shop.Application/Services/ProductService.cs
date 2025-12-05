@@ -117,6 +117,19 @@ public class ProductService(IEfUnitOfWork _uow, IEfRepository<Product> _productR
                 Message = ProductConstants.ProductWithIdNotFound
             };
 
+        bool nameExists = await _productRepository.ExistsAsync(
+            p => p.Name.ToLower() == request.Name.ToLower() && p.Id != id,
+            asNoTracking: true,
+            cancellationToken: cancellationToken
+            );
+
+        if (nameExists)
+            return new ApiResponse<ProductResponseDto>
+            {
+                Status = ResponseStatus.Conflict,
+                Message = ProductConstants.ProductExist
+            };
+
         try
         {
             product.Update(request.Name, request.Description, request.Quantity);
