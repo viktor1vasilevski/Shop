@@ -118,7 +118,7 @@ public class ProductService(IEfUnitOfWork _uow, IEfRepository<Product> _productR
             };
 
         bool nameExists = await _productRepository.ExistsAsync(
-            p => p.Name.ToLower() == request.Name.ToLower() && p.Id != id,
+            p => p.Name.ToLower() == request.Name.Trim().ToLower() && p.Id != id,
             asNoTracking: true,
             cancellationToken: cancellationToken);
 

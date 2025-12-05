@@ -43,6 +43,7 @@ public class ProductController(IProductService _productService) : BaseController
     [ProducesResponseType(typeof(ApiResponse<ProductResponseDto>), 200)]
     [ProducesResponseType(typeof(ApiResponse<ProductResponseDto>), 400)]
     [ProducesResponseType(typeof(ApiResponse<ProductResponseDto>), 404)]
+    [ProducesResponseType(typeof(ApiResponse<ProductResponseDto>), 409)]
     public async Task<ActionResult<ApiResponse<ProductResponseDto>>> Update(Guid id, [FromBody] UpdateProductRequest request, CancellationToken cancellationToken)
     {
         var response = await _productService.UpdateProductAsync(id, request, cancellationToken);
