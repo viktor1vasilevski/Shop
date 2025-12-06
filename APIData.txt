@@ -1,0 +1,105 @@
+GET /api/product
+Request: none
+Response 200 OK:
+{
+  "data": [
+    {
+      "id": "c1b6b150-94ae-432a-b296-08de3406c20f",
+      "name": "this is product 1",
+      "description": "desc 1",
+      "quantity": 10,
+      "created": "2025-12-05T14:01:16.414093",
+      "lastModified": "2025-12-05T14:02:34.4415449"
+    },
+    {
+      "id": "e75ac19f-369a-4abd-a1af-f58e877e4d97",
+      "name": "this is product 2",
+      "description": "desc 2",
+      "quantity": 11,
+      "created": "2025-12-05T17:58:01.0779019",
+      "lastModified": null
+    }
+  ],
+  "message": null,
+  "status": 0
+}
+
+---
+
+GET /api/product/{id}
+Request: none
+Response 200 OK:
+{
+  "data": {
+    "id": "c1b6b150-94ae-432a-b296-08de3406c20f",
+    "name": "this is product 1",
+    "description": "desc 1",
+    "quantity": 10,
+    "created": "2025-12-05T14:01:16.414093",
+    "lastModified": "2025-12-05T14:02:34.4415449"
+  },
+  "message": null,
+  "status": 0
+}
+Response 404 Not Found:
+{
+  "data": null,
+  "message": "Product with the given ID was not found.",
+  "status": 5
+}
+
+---
+
+POST /api/product
+Request Body:
+{
+  "name": "string",
+  "description": "string",
+  "quantity": 0
+}
+
+Response 201 Created:
+{
+  "data": {
+    "id": "c1b6b150-94ae-432a-b296-08de3406c20f",
+    "name": "New Product",
+    "description": "Description of the new product",
+    "quantity": 5,
+    "created": "2025-12-06T12:30:00Z",
+    "lastModified": null
+  },
+  "message": "Product was successfully created.",
+  "status": 3
+}
+
+---
+PUT /api/product/{id}
+Request Body:
+{
+  "name": "updated product name",
+  "description": "updated desc",
+  "quantity": 120
+}
+
+Response 200 OK:
+{
+  "data": {
+    "id": "c1b6b150-94ae-432a-b296-08de3406c20f",
+    "name": "updated product name",
+    "description": "updated desc",
+    "quantity": 120,
+    "created": "2025-12-05T14:01:16.414093",
+    "lastModified": "2025-12-05T14:02:34.4415449"
+  },
+  "message": "Product was successfully updated.",
+  "status": 4
+}
+
+---
+DELETE api/product/{id}	
+Response body
+{
+  "data": null,
+  "message": "Product was successfully deleted.",
+  "status": 0
+}
