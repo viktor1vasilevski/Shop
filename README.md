@@ -62,4 +62,4 @@ By default, the API will be accessible at `https://localhost:7139`, and on swagg
     shop-api
    ```
    The API will be available at http://localhost:8080
-- I left the Docker environment variable pointing to the sa user with the password you set (Vikor123) because that’s what worked.
+- I left the Docker environment variable pointing to the sa user with the password (Vikor123) because that’s what worked.
