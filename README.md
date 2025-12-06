@@ -43,7 +43,9 @@ By default, the API will be accessible at `https://localhost:7139`, and on swagg
 
 ## Design Decisions & Notable Choices
 
-- **Domain rich models: ** The domain model is the source of truth, enforcing business rules and valid state through its own behavior
+- **Domain rich models:** The domain model is the source of truth, enforcing business rules and valid state through its own behavior.
 - **Separation of Concerns:** Each layer has a specific responsibility, making the app maintainable and testable.
 - **Unit Testing:** Core business logic and domain models are covered with tests.
 - **Extensible:** Infrastructure and Application layers are loosely coupled for easy future improvements.
+
+## Docker
