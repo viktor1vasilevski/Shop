@@ -16,13 +16,18 @@ Shop/
 ├── Shop.Domain.Tests      # Tests for Domain layer
 ```
 
-## Setup
+## Installation
 
+1.  Clone the repository or download the zip file
 ```bash
 git clone https://github.com/viktor1vasilevski/Shop.git
-cd Shop
-dotnet restore
 ```
+2.  Change the connection string - In the Api project in the ```appsettings.json``` file enter your server name 
+    and name of the database.
+    
+3.  Go into the Package Manager Console and type: ```Add-Migration "Init```"
+4.  When this is done, just type in the Package Manager Console: ```Update-Database```
+
 
 ## Running the Application
 
@@ -30,19 +35,17 @@ dotnet restore
 cd Shop.Api
 dotnet run
 ```
+or just Run in VS
 
 
-By default, the API will be accessible at `https://localhost:7139`.
+By default, the API will be accessible at `https://localhost:7139`, and on swagger `https://localhost:7139/swagger/index.html`.
 
-## Running the Tests
-
-```bash
-dotnet test
-```
 
 ## Design Decisions & Notable Choices
 
-- **Domain rich models: ** The domain model is the source of truth, enforcing business rules and valid state through its own behavior
+- **Domain rich models:** The domain model is the source of truth, enforcing business rules and valid state through its own behavior.
 - **Separation of Concerns:** Each layer has a specific responsibility, making the app maintainable and testable.
 - **Unit Testing:** Core business logic and domain models are covered with tests.
 - **Extensible:** Infrastructure and Application layers are loosely coupled for easy future improvements.
+
+## Docker
