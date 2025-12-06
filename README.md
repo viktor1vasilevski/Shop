@@ -25,7 +25,7 @@ git clone https://github.com/viktor1vasilevski/Shop.git
 2.  Change the connection string - In the Api project in the ```appsettings.json``` file enter your server name 
     and name of the database.
     
-3.  Go into the Package Manager Console and type: ```Add-Migration "Init```"
+3.  Go into the Package Manager Console and type: ```Add-Migration "Init```
 4.  When this is done, just type in the Package Manager Console: ```Update-Database```
 
 
