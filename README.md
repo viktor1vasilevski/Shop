@@ -49,3 +49,17 @@ By default, the API will be accessible at `https://localhost:7139`, and on swagg
 - **Extensible:** Infrastructure and Application layers are loosely coupled for easy future improvements.
 
 ## Docker
+1. Build the Docker image:
+   ```bash
+   docker build -t shop-api
+   ```
+2. Run the container:
+   ```bash
+   docker run -d -p 8080:8080
+    --name shop-api-container
+    -e "ASPNETCORE_ENVIRONMENT=Production"
+    -e "ConnectionStrings__DefaultConnection=Server=host.docker.internal;Database=ShopDb;User Id=sa;Password=Vikor123;Encrypt=False"
+    shop-api
+   ```
+   The API will be available at http://localhost:8080
+- I left the Docker environment variable pointing to the sa user with the password you set (Vikor123) because that’s what worked.
