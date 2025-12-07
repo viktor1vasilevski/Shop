@@ -51,7 +51,7 @@ By default, the API will be accessible at `https://localhost:7139`, and on swagg
 ## Docker
 1. Build the Docker image:
    ```bash
-   docker build -t shop-api
+   docker build -t shop-api .
    ```
 2. Run the container:
    ```bash
